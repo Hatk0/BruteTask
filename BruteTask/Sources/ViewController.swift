@@ -31,6 +31,14 @@ class ViewController: UIViewController {
         return button
     }()
     
+    private lazy var stopButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Stop password search", for: .normal)
+        button.addTarget(self, action: #selector(stopPasswordSearch), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -51,6 +59,7 @@ class ViewController: UIViewController {
         view.addSubview(resultLabel)
         view.addSubview(activityIndicator)
         view.addSubview(generateButton)
+        view.addSubview(stopButton)
     }
 
     private func setupLayout() {
@@ -66,7 +75,10 @@ class ViewController: UIViewController {
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
             generateButton.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 20),
-            generateButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            generateButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            stopButton.topAnchor.constraint(equalTo: generateButton.bottomAnchor, constant: 20),
+            stopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
@@ -88,6 +100,11 @@ class ViewController: UIViewController {
                 self.textField.isSecureTextEntry = false
             }
         }
+    }
+    
+    @objc
+    func stopPasswordSearch() {
+        
     }
     
     // MARK: - Generate password methods
