@@ -23,6 +23,14 @@ class ViewController: UIViewController {
         return activityIndicator
     }()
     
+    private lazy var generateButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Generate Password", for: .normal)
+        button.addTarget(self, action: #selector(generatePassword), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -42,6 +50,7 @@ class ViewController: UIViewController {
         view.addSubview(textField)
         view.addSubview(resultLabel)
         view.addSubview(activityIndicator)
+        view.addSubview(generateButton)
     }
 
     private func setupLayout() {
@@ -54,8 +63,18 @@ class ViewController: UIViewController {
             resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            generateButton.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 20),
+            generateButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+    
+    // MARK: - Action
+    
+    @objc
+    func generatePassword() {
+        
     }
 }
 
