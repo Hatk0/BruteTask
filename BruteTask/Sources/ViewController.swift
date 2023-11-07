@@ -11,6 +11,12 @@ class ViewController: UIViewController {
         return textField
     }()
     
+    private lazy var resultLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -28,6 +34,7 @@ class ViewController: UIViewController {
     
     private func setupHierarchy() {
         view.addSubview(textField)
+        view.addSubview(resultLabel)
     }
 
     private func setupLayout() {
@@ -35,6 +42,9 @@ class ViewController: UIViewController {
             textField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             textField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -40),
             textField.widthAnchor.constraint(equalToConstant: 200),
+            
+            resultLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 20),
+            resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }
