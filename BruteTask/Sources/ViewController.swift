@@ -74,7 +74,20 @@ class ViewController: UIViewController {
     
     @objc
     func generatePassword() {
-        
+        textField.isSecureTextEntry = true
+        activityIndicator.startAnimating()
+
+        let randomPassword = generateRandomPassword()
+        textField.text = randomPassword
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.bruteForce(passwordToUnlock: randomPassword)
+
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.textField.isSecureTextEntry = false
+            }
+        }
     }
     
     // MARK: - Generate password methods
