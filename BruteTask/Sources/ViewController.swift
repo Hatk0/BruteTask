@@ -17,6 +17,12 @@ class ViewController: UIViewController {
         return label
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -35,6 +41,7 @@ class ViewController: UIViewController {
     private func setupHierarchy() {
         view.addSubview(textField)
         view.addSubview(resultLabel)
+        view.addSubview(activityIndicator)
     }
 
     private func setupLayout() {
@@ -44,7 +51,10 @@ class ViewController: UIViewController {
             textField.widthAnchor.constraint(equalToConstant: 200),
             
             resultLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 20),
-            resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 }
