@@ -76,6 +76,31 @@ class ViewController: UIViewController {
     func generatePassword() {
         
     }
+    
+    // MARK: - Generate password methods
+
+    func generateRandomPassword() -> String {
+        let characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        return String((0..<8).map { _ in characters.randomElement()! })
+    }
+
+    func bruteForce(passwordToUnlock: String) {
+        let ALLOWED_CHARACTERS: [String] = String().printable.map { String($0) }
+
+        var password: String = ""
+
+        while password != passwordToUnlock {
+            password = generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)
+            print(password)
+
+            if password == passwordToUnlock {
+                DispatchQueue.main.async {
+                    self.resultLabel.text = "Password: \(password)"
+                }
+                break
+            }
+        }
+    }
 }
 
 // MARK: - Extension and methods
