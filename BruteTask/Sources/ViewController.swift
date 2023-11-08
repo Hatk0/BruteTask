@@ -2,6 +2,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var isBruteForceRunning = false
+    
     // MARK: - UI
     
     private lazy var textField: UITextField = {
