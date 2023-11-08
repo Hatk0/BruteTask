@@ -57,11 +57,13 @@ class ViewController: UIViewController {
     }
     
     private func setupHierarchy() {
-        view.addSubview(textField)
-        view.addSubview(resultLabel)
-        view.addSubview(activityIndicator)
-        view.addSubview(generateButton)
-        view.addSubview(stopButton)
+        let views = [textField,
+                     resultLabel,
+                     activityIndicator,
+                     generateButton,
+                     stopButton]
+        
+        views.forEach { view.addSubview($0) }
     }
 
     private func setupLayout() {
