@@ -106,7 +106,8 @@ class ViewController: UIViewController {
     
     @objc
     func stopPasswordSearch() {
-        
+        isBruteForceRunning = false
+        resultLabel.text = "Password cracking stopped"
     }
     
     // MARK: - Generate password methods
@@ -117,13 +118,21 @@ class ViewController: UIViewController {
     }
 
     func bruteForce(passwordToUnlock: String) {
+        isBruteForceRunning = true
         let ALLOWED_CHARACTERS: [String] = String().printable.map { String($0) }
 
         var password: String = ""
 
         while password != passwordToUnlock {
+            if !isBruteForceRunning {
+                break
+            }
+
             password = generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)
-            print(password)
+
+            DispatchQueue.main.async {
+                self.resultLabel.text = "Password: \(password)"
+            }
 
             if password == passwordToUnlock {
                 DispatchQueue.main.async {
